@@ -1,7 +1,6 @@
-<application version="2.0" 
-    xmlns="http://aps-standard.org/ns/2">
-    <id>APPLICATION ID</id>
-    <name>http://myweatherdemo.com/</name>
+<application version="2.0" xmlns="http://aps-standard.org/ns/2">
+    <id>http://myweatherdemo.com/</id>
+    <name>MyWeatherDemo</name>
     <version>1.0</version>
     <release>1</release>
     <presentation></presentation>
