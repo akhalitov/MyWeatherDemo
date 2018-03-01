@@ -1,0 +1,28 @@
+<application version="2.0" 
+    xmlns="http://aps-standard.org/ns/2">
+    <id>APPLICATION ID</id>
+    <name>http://myweatherdemo.com/</name>
+    <version>1.0</version>
+    <release>1</release>
+    <presentation></presentation>
+    <license-agreement>
+        <free/>
+        <text>
+            <name>End-User License Agreement</name>
+            <url>http://opensource.org/licenses/bsd-license</url>
+        </text>
+    </license-agreement>
+    <upgrade match="version =ge= 1.0, release =ge= 1"/>
+    <service id="application">
+        <code engine="php" path="scripts/application.php"/>
+    </service>
+    <service id="company">
+        <code engine="php" path="scripts/company.php"/>
+    </service>
+    <service id="city">
+        <code engine="php" path="scripts/city.php"/>
+    </service>
+    <service id="user">
+        <code engine="php" path="scripts/user.php"/>
+    </service>
+</application>
