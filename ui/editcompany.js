@@ -52,7 +52,7 @@ define([
                     return;
                 }
                 var NEWDATA = {
-                    "aps": { "type": "http://myweatherdemo.com/subscription_service/1.0" },
+                    "aps": { "type": "http://myweatherdemo.com/company/1.0" },
                     "username": this.byId('tbusername').value,
                     "password": this.byId("tbpassword").value
                 };
