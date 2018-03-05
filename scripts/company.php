@@ -80,6 +80,20 @@
             $response = $this->send_curl_request('DELETE', $url);
         }
 
+        public function configure($new){
+            // need to pass company_id to indicate which company we want to delete
+            $url = $this->application->url . "company/" . $this->company_id;
+            // $new contains new values that will be saved in APS controller after configure() exits
+            // you can access old values using $this
+            $request = array(
+                'username' => $new->username,
+                'password' => $new->password
+            );
+            $response = $this->send_curl_request('PUT', $url, $request);
+
+          }
+
+
 		// you can add your own methods as well, don't forget to make them private
 		private function send_curl_request($verb, $url, $payload = ''){
 			$token = $this->application->token;

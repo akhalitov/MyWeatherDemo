@@ -18,7 +18,21 @@ define([
                             onClick: function () {
                                 window.open("http://www.myweatherdemo.com/login", "_blank");
                             }
-                        }]
+                        },
+                        {
+                            id: "btnEdit",
+                            title: _('Edit'),
+                            iconClass: "fa-external-link",
+                            autoBusy: false,
+                            onClick: function () {
+                                aps.apsc.showPopup({
+                                    viewId: "editcompany",
+                                    resourceId: null,
+                                    modal: false
+                                });
+                            }
+                        }
+                    ]
                 }, [
                         ["aps/FieldSet", {
                             gridSize: "md-12"
