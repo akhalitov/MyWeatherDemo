@@ -8,7 +8,17 @@ define([
                 ["aps/Tile", {
                     gridSize: "md-6",
                     title: _('External company id'),
-                    id: "tileCompany"
+                    id: "tileCompany",
+                    buttons: [
+                        {
+                            id: "btnLogin",
+                            title: _('Login'),
+                            iconClass: "fa-external-link",
+                            autoBusy: false,
+                            onClick: function () {
+                                window.open("http://www.myweatherdemo.com/login", "_blank");
+                            }
+                        }]
                 }, [
                         ["aps/FieldSet", {
                             gridSize: "md-12"
@@ -26,6 +36,16 @@ define([
                             ]]
                     ]]
             ]];
+        },
+
+        onContext: function () {
+            var company = aps.context.vars.company;
+
+            this.byId("outputUsername").set("value", company.username);
+            this.byId("outputPassword").set("value", company.password);
+            this.byId("tileCompany").set("title", company.company_id);
+
+            aps.apsc.hideLoading(); // Mandatory call
         }
     });
 });
