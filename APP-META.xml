@@ -1,7 +1,7 @@
 <application version="2.0" xmlns="http://aps-standard.org/ns/2">
     <id>http://myweatherdemo.com/</id>
     <name>MyWeatherDemo</name>
-    <version>5.0</version>
+    <version>6.0</version>
     <release>1</release>
     <presentation>
         <navigation id="ccp" label="MyWeatherDemo">
