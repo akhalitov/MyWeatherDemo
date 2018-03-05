@@ -59,7 +59,7 @@
          */
         public $notificationId;
 
-		
+
 		public function provision(){
             
             // to create a company in external service we need to pass country, city and name of the company
@@ -132,6 +132,11 @@
             
         }
 
+        public function retrieve(){
+            $url = $this->application->url . "company/" . $this->company_id;
+			$response = $this->send_curl_request('GET', $url);
+			$this->query_counter->usage = $response->{'weatherCount'};
+		}
 
 		// you can add your own methods as well, don't forget to make them private
 		private function send_curl_request($verb, $url, $payload = ''){
