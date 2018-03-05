@@ -1,7 +1,7 @@
 <?php
     require "aps/2/runtime.php";     
     /**
-    * @type("http://myweatherdemo.com/company/1.0")
+    * @type("http://myweatherdemo.com/company/1.1")
     * @implements("http://aps-standard.org/types/core/resource/1.0")
     */    
     class company extends \APS\ResourceBase    
@@ -111,6 +111,26 @@
             $this->notificationId = $notificationResponse->id;
 
           }
+
+        /**
+         * @verb(GET)
+         * @path("/getTemperature")
+         */
+        public function getTemperature(){
+            // to get current temperature we need to send GET request providing company_id
+            $url = $this->application->url . "company/" . $this->company_id;
+            $response = $this->send_curl_request('GET', $url);
+            // returning temperature, city, country to the caller, in our case - company.js
+            $temperature = array();
+            $temperature['fahrenheit'] = $response->{'fahrenheit'};
+            $temperature['celsius'] = $response->{'celsius'};
+            $temperature['city'] = $response->{'city'};
+            $temperature['country'] = $response->{'country'};
+        
+            // APS PHP runtime will automatically execute json_encode for $temperature
+            return $temperature; 
+            
+        }
 
 
 		// you can add your own methods as well, don't forget to make them private

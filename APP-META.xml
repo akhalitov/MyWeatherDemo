@@ -1,11 +1,11 @@
 <application version="2.0" xmlns="http://aps-standard.org/ns/2">
     <id>http://myweatherdemo.com/</id>
     <name>MyWeatherDemo</name>
-    <version>6.0</version>
-    <release>1</release>
+    <version>7.0</version>
+    <release>3</release>
     <presentation>
         <navigation id="ccp" label="MyWeatherDemo">
-            <var name="company" type-id="http://myweatherdemo.com/company/1.0" />
+            <var name="company" type-id="http://myweatherdemo.com/company/1.1" />
             <plugs-to id="http://www.parallels.com/ccp/2"/>
             <view id="company" label="Company Information" src="ui/company.js"/>
             <popup id="editcompany" label="Company Settings" src="ui/editcompany.js">
