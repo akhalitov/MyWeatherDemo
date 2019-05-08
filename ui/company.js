@@ -18,7 +18,7 @@ define([
                             iconClass: "fa-external-link",
                             autoBusy: false,
                             onClick: function () {
-                                window.open("http://www.myweatherdemo.com/login", "_blank");
+                                window.open("http://myweatherdemo.learn-cloudblue.com/login", "_blank");
                             }
                         },
                         {
