@@ -55,7 +55,7 @@
 
 		
 		// MyWeatherDemo API URL to work with companies
-		const BASE_URL = "http://www.myweatherdemo.com/api/company/";
+		const BASE_URL = "http://myweatherdemo.learn-cloudblue.com/api/company/";
 
 		public function provision(){
             
