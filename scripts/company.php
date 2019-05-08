@@ -61,6 +61,14 @@
 
 
 		public function provision(){
+
+            // preparing a subscription to Changed events type, designating handler as onLocationChange()
+            $sub = new \APS\EventSubscription(\APS\EventSubscription::Changed, "onLocationChange");
+            // we want to track linked core/account resource
+            $sub->source->id=$this->account->aps->id;
+            // getting access to controller conntector and subscribing
+            $apsc = \APS\Request::getController();
+            $apsc->subscribe($this, $sub);
             
             // to create a company in external service we need to pass country, city and name of the company
             // we can get them from linked core/account resource
@@ -136,7 +144,35 @@
             $url = $this->application->url . "company/" . $this->company_id;
 			$response = $this->send_curl_request('GET', $url);
 			$this->query_counter->usage = $response->{'weatherCount'};
-		}
+        }
+        
+        /**
+        * @verb(POST)
+        * @path("/onLocationChange")
+        * @param("http://aps-standard.org/types/core/resource/1.0#Notification",body)
+        */
+        public function onLocationChange($event) {
+
+            // getting updated core/accont resource, we will get stale values if we try to get them from $this->account
+            $apsc = \APS\Request::getController();
+            $account = $apsc->getResource($event->source->id);
+
+            // getting current city and country from MyWeatherDemo
+            $url = self::BASE_URL . $this->company_id;
+            $response = $this->send_curl_request('GET', $url);
+
+            // we want to update resource in MyWeatherDemo only if city and/or country was updated in linked core/account resource
+            if($response->city != $account->addressPostal->locality || 
+                $response->country != $account->addressPostal->countryName) {
+
+                // sending new city and country
+                $request = array(
+                    'city' => $account->addressPostal->locality,
+                    'country' => $account->addressPostal->countryName
+                );
+                $response = $this->send_curl_request('PUT', $url, $request);
+            }
+        }
 
 		// you can add your own methods as well, don't forget to make them private
 		private function send_curl_request($verb, $url, $payload = ''){
